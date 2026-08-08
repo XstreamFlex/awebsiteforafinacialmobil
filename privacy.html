@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Veloce AI</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Smooth scroll margin for anchors */
+    section {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          V
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-slate-900 dark:from-white dark:via-brand-400 dark:to-white bg-clip-text text-transparent">
+          Veloce<span class="text-accent-500 font-extrabold">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-brand-600 dark:text-brand-400 transition-colors">Home</a>
+        <a href="pricing.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="faq.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        <a href="support.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Support</a>
+        <a href="contact.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Nav controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon -->
+          <svg id="theme-toggle-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <!-- Sun Icon -->
+          <svg id="theme-toggle-sun" class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <a href="pricing.html" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10 hover:shadow-brand-600/20">
+          Get Veloce Free
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle and Theme Toggle for Mobile -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <!-- Theme Toggle (Mobile) -->
+        <button id="theme-toggle-btn-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- We can reuse or trigger click on main button or just let JS target both -->
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- GLOBAL HEADER NAVIGATION -->
+  
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div class="px-4 pt-2 pb-6 space-y-3">
+      <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Home</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Pricing</a>
+      <a href="faq.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">FAQ</a>
+      <a href="support.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Support</a>
+      <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Contact</a>
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+        <a href="pricing.html" class="block w-full text-center px-4 py-3 rounded-xl bg-brand-600 text-white font-semibold shadow">
+          Get Veloce Free
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-grow">
+    <!-- Hero / Title Header Section -->
+    <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-slate-100 to-white dark:from-slate-950 dark:to-slate-900 border-b border-slate-200 dark:border-slate-900 transition-colors">
+      <div class="absolute inset-0 bg-grid-slate-200/50 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0))] dark:bg-grid-slate-800/20" style="background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 0); background-size: 24px 24px;"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300 text-xs font-semibold mb-6 uppercase tracking-wider">
+          <svg class="w-3.5 h-3.5 text-accent-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2.166 4.9C2.196 4.8 2.24 4.7 2.3 4.6l7-3.5a1 1 0 01.894 0l7 3.5c.06.03.104.1.134.1a1 1 0 01.506.87v4.51c0 5.397-3.692 10.155-8.8 11.233a1 1 0 01-.4 0C3.308 20.08 0 15.346 0 9.948V5.438a1 1 0 01.5-.869l1.666-.67zM10 3.328L4 6.328v3.62c0 4.14 2.5 7.828 6 8.8 3.5-.972 6-4.66 6-8.8v-3.62l-6-3z" clip-rule="evenodd"></path>
+          </svg>
+          Bank-Grade Security Assured
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
+          Your Privacy is <span class="bg-gradient-to-r from-brand-500 to-accent-500 bg-clip-text text-transparent">Our Priority</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">
+          At Veloce AI, we believe your personal cash flow mapping, AI bucket sorting, and bank synchronization should remain 100% private, fully secure, and completely under your control.
+        </p>
+        <div class="mt-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+          Last Updated: October 24, 2024 • Version 2.1 (Upgraded with AI Data Protocols)
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Metrics / Trust Highlights Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/60 dark:border-slate-800/80 flex items-start space-x-4">
+          <div class="p-3 rounded-xl bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Read-Only Control</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">We can never execute actions, transfer, or move funds. Read-only sync ensures absolute protection.</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/60 dark:border-slate-800/80 flex items-start space-x-4">
+          <div class="p-3 rounded-xl bg-accent-50 dark:bg-accent-950/30 text-accent-600 dark:text-accent-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Zero Selling of Data</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Your budgets are yours. We do not sell your personal financial profiles, transactions, or stats to third parties.</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/60 dark:border-slate-800/80 flex items-start space-x-4">
+          <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Secure Sandbox AI</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">AI models operate within highly secure, containerized private environments. No general model training on your data.</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200/60 dark:border-slate-800/80 flex items-start space-x-4">
+          <div class="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white">GDPR & CCPA Compliant</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Full regional sovereignty compliance. Instantly download or permanently delete all your tracking details.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Content Layout: Sidebar + Full Legal Terms -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="flex flex-col lg:flex-row gap-12">
+        
+        <!-- Interactive Sidebar Index (Sticky) -->
+        <aside class="w-full lg:w-1/4 lg:sticky lg:top-28 self-start space-y-4">
+          <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Table of Contents</h3>
+            
+          </div>
+
+          <!-- Trust Certificate Box -->
+          <div class="bg-gradient-to-tr from-brand-600 to-indigo-700 rounded-2xl p-6 text-white shadow-xl shadow-brand-500/10">
+            <h4 class="font-bold text-lg mb-2">Need immediate assistance with data deletion?</h4>
+            <p class="text-xs text-brand-100 leading-relaxed mb-4">
+              We process all account erasure requests instantly, complying fully with your global privacy rights. Email our data officer directly.
+            </p>
+            <a href="contact.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-brand-700 text-xs font-bold rounded-lg hover:bg-brand-50 transition-colors">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Contact Privacy Desk
+            </a>
+          </div>
+        </aside>
+
+        <!-- Document Content -->
+        <article class="w-full lg:w-3/4 space-y-12 text-slate-700 dark:text-slate-300">
+          
+          <!-- Section 1 -->
+          <section id="section-introduction" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">1. Introduction & Core Philosophy</h2>
+            <p class="leading-relaxed mb-4">
+              Welcome to <strong>Veloce AI</strong> (the "Application" or "Platform"), owned and operated by Veloce Technologies, Inc. ("Veloce", "we", "us", or "our"). This Privacy Policy details our unwavering commitment to processing the financial details you entrust to our smart budgeting and auto-tracking services with absolute discretion, state-of-the-art security, and transparent methodologies.
+            </p>
+            <p class="leading-relaxed mb-4">
+              Our core mission is to help you track spending, organize savings into logical buckets, and automatically keep track of your cash flows using state-of-the-art Artificial Intelligence tools. Because our application maps to your active banking credentials, card platforms, and dynamic transactional patterns, we employ security protocols engineered to prevent unauthorized access, ensuring you retain 100% data sovereignty.
+            </p>
+            <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-brand-500 text-sm">
+              <strong>Key Principle:</strong> Under no circumstances does Veloce AI maintain credentials to manipulate your bank deposits, transfer liquidity, or modify balances. All data streaming pipelines to our servers are governed exclusively as read-only.
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="section-data-collection" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">2. Categories of Information We Collect</h2>
+            <p class="leading-relaxed mb-4">
+              To operate our budgeting buckets dynamically and calculate your remaining safe-to-spend limits in real time, Veloce AI gathers several tiers of user data.
+            </p>
+            <div class="overflow-x-auto mt-6">
+              <table class="w-full text-left text-sm border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400 font-bold">
+                    <th class="py-3 px-4">Data Class</th>
+                    <th class="py-3 px-4">What We Gather</th>
+                    <th class="py-3 px-4">Operational Purpose</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                  <tr>
+                    <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">Account Details</td>
+                    <td class="py-3 px-4 text-xs">Name, Email, Phone, Password hash</td>
+                    <td class="py-3 px-4 text-xs">Authentication, account restoration, core alert notifications.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">Financial Sync</td>
+                    <td class="py-3 px-4 text-xs">Institution name, balance counts, merchant strings, metadata</td>
+                    <td class="py-3 px-4 text-xs">Establishing total liquid net assets and routing cash points to personalized buckets.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">AI Mapping</td>
+                    <td class="py-3 px-4 text-xs">Cleaned merchant categorization records, user edits, customized bucket definitions</td>
+                    <td class="py-3 px-4 text-xs">Enhancing the intelligent machine learning model to automatically file future transactions.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">Technical Analytics</td>
+                    <td class="py-3 px-4 text-xs">IP address, operating system, application version, crash logs</td>
+                    <td class="py-3 px-4 text-xs">Bug fixes, improving memory efficiency of the mobile interface.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="section-ai-processing" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">3. Automated AI Tracking & AI Systems Protocols</h2>
+            <p class="leading-relaxed mb-4">
+              Veloce AI is upgraded with an autonomous categorization engine. Here is specifically how our algorithmic layer handles your tracking:
+            </p>
+            <ul class="list-disc pl-6 space-y-3 mt-4">
+              <li>
+                <strong>Local Metadata Sifting:</strong> Transaction details derived from linked cards are fed through isolated preprocessing steps. The actual text values are analyzed solely to match purchase names (e.g., "Starbucks") with target bucket parameters (e.g., "Coffee").
+              </li>
+              <li>
+                <strong>No Public Model Leakage:</strong> We strictly refrain from feeding transaction logs, names, locations, or account numbers into public generative AI frameworks. All algorithmic mapping is performed inside isolated private virtual clouds.
+              </li>
+              <li>
+                <strong>Human-in-the-Loop Override:</strong> When you manually change a category bucket, our AI marks this edit locally. This reinforces your dedicated individual model and does not create public exposure of your transactions.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="section-bank-integration" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">4. Bank & Plaid Integration Standards</h2>
+            <p class="leading-relaxed mb-4">
+              To fetch transaction schedules smoothly without risk, Veloce AI utilizes <strong>Plaid</strong>, the global gold standard in secure banking infrastructure.
+            </p>
+            <div class="bg-indigo-50 dark:bg-slate-900 p-6 rounded-2xl border border-indigo-100 dark:border-slate-800 space-y-4">
+              <h4 class="font-bold text-slate-950 dark:text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-accent-500 animate-ping"></span>
+                How your Bank credentials remain invisible to us:
+              </h4>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                When you input banking credentials in Veloce AI, you are communicating directly with your institution via Plaid's secure portal. Veloce AI never sees, tracks, saves, or stores your plain-text bank password or username.
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Once authentication succeeds, Plaid feeds our system an encrypted, read-only token to retrieve transactions. You can revoke this credential flow anytime through the connection settings page inside the Veloce AI application.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="section-data-sharing" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">5. Third-Party Sharing Limits</h2>
+            <p class="leading-relaxed mb-4">
+              We do not participate in advertising networks or data broker systems. We only share information with partners critical to running the app:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <span class="text-xs font-bold text-brand-500 uppercase">Cloud Hosting</span>
+                <h5 class="font-bold text-slate-900 dark:text-white mt-1">Amazon Web Services (AWS)</h5>
+                <p class="text-xs text-slate-500 mt-2">All database clusters, machine-learning nodes, and encrypted transaction repositories are hosted securely on AWS within the United States.</p>
+              </div>
+              <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <span class="text-xs font-bold text-brand-500 uppercase">Bank Connectivity</span>
+                <h5 class="font-bold text-slate-900 dark:text-white mt-1">Plaid Inc.</h5>
+                <p class="text-xs text-slate-500 mt-2">Plaid connects securely to Chase, Bank of America, Wells Fargo, and 12,000+ others, executing authentication via bank-level security.</p>
+              </div>
+              <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <span class="text-xs font-bold text-brand-500 uppercase">Notifications & Verification</span>
+                <h5 class="font-bold text-slate-900 dark:text-white mt-1">Twilio & SendGrid</h5>
+                <p class="text-xs text-slate-500 mt-2">Used strictly to verify your device via SMS code or to send urgent budget notification alerts regarding safety parameters.</p>
+              </div>
+              <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <span class="text-xs font-bold text-brand-500 uppercase">Platform Analytics</span>
+                <h5 class="font-bold text-slate-900 dark:text-white mt-1">Self-Hosted Telemetry</h5>
+                <p class="text-xs text-slate-500 mt-2">We use anonymized, self-hosted performance telemetry, ensuring third-party tracking cookies cannot access your spend lists.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6 -->
+          <section id="section-user-rights" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">6. Your Rights, Data Sovereignty & Portability</h2>
+            <p class="leading-relaxed mb-4">
+              Regardless of your geographic location, Veloce AI provides comprehensive data management capabilities right inside your application dashboard:
+            </p>
+            <div class="space-y-4 mt-6">
+              <div class="flex items-start gap-4">
+                <div class="h-6 w-6 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-bold shrink-0 mt-1">A</div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 dark:text-white">Right of Access & Extraction</h4>
+                  <p class="text-sm text-slate-500">You may trigger a full JSON or CSV export of all your categorizations, registered accounts, and budget bucket setups at any point inside system settings.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="h-6 w-6 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-bold shrink-0 mt-1">B</div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 dark:text-white">Right of Erasure ("Right to Be Forgotten")</h4>
+                  <p class="text-sm text-slate-500">Pressing "Delete Account" initiates an automatic script that immediately wipes your records, linked bank hooks, budget rules, and AI metadata flags from our storage networks.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="h-6 w-6 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-bold shrink-0 mt-1">C</div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 dark:text-white">Right to Restrict AI Processing</h4>
+                  <p class="text-sm text-slate-500">You can disable automated transaction classification at any time. When disabled, your spending defaults to manual entry, and your transactions bypass the parsing models.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7 -->
+          <section id="section-security-standards" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">7. Advanced Technology Security Standards</h2>
+            <p class="leading-relaxed mb-4">
+              To defend our system endpoints from exposure, we enforce security protocols designed to meet standard financial operations guidelines:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+              <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                <h5 class="font-bold text-slate-900 dark:text-white mb-2">AES-256 Encryption</h5>
+                <p class="text-xs text-slate-500 leading-relaxed">All transaction history blocks, banking links, and system identifiers are stored under highly secured 256-bit Advanced Encryption Standards.</p>
+              </div>
+              <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                <h5 class="font-bold text-slate-900 dark:text-white mb-2">TLS 1.3 Transmission</h5>
+                <p class="text-xs text-slate-500 leading-relaxed">Data passing between your mobile device, the Plaid API hubs, and Veloce computing nodes utilizes TLS 1.3 to avoid interceptions.</p>
+              </div>
+              <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                <h5 class="font-bold text-slate-900 dark:text-white mb-2">SOC 2 Type II Hosting</h5>
+                <p class="text-xs text-slate-500 leading-relaxed">Our entire server footprint is physically hosted in facilities audited annually under strict SOC 2 cybersecurity standard frameworks.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 8 -->
+          <section id="section-contact-info" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">8. Inquiries & Updates</h2>
+            <p class="leading-relaxed mb-4">
+              This Privacy Policy may occasionally change as we introduce deeper integrations, new card synchronization services, or refined AI features. We will notify you of any material changes by sending an email notice to the address specified in your account or via a prominent notification banner inside the Veloce AI app.
+            </p>
+            <p class="leading-relaxed mb-6">
+              If you have questions, security-specific insights, or would like to request clarification on how our AI tracks spending securely, please reach out to our team:
+            </p>
+            <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <h5 class="font-bold text-slate-900 dark:text-white">Veloce Technologies Security Desk</h5>
+                <p class="text-sm text-slate-500">100 Pine Street, Floor 17, San Francisco, CA 94111</p>
+                <p class="text-sm text-brand-600 dark:text-brand-400 font-semibold mt-1">Email: privacy@veloce-ai.com</p>
+              </div>
+              <a href="contact.html" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-xs font-bold text-center transition-colors">
+                Submit Formal Inquiry
+              </a>
+            </div>
+          </section>
+
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Trust Checkmark / Sign Up Banner -->
+    <section class="bg-slate-100 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800/80 py-16 transition-colors">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">Ready for Stress-Free Budgeting?</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto text-sm sm:text-base">
+          Experience automated bucket tracking, intelligent AI merchant sorting, and real-time safe-to-spend limits under our bank-grade protection shield.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="pricing.html" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-lg shadow-brand-500/20 transition-all text-sm">
+            Get Veloce AI Free
+          </a>
+          <a href="support.html" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold transition-all text-sm">
+            Read Security FAQs
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  
+
+  <!-- Script logic for Responsive navigation, Dark mode and Sticky navigation sync -->
+  <script>
+    // Set dynamic current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Dark Mode system detection & manual toggle
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    }
+
+    // Set initial mode state
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', toggleDarkMode);
+    themeToggleBtnMobile.addEventListener('click', toggleDarkMode);
+
+    // Mobile Hamburger Menu Action
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Sidebar active styling indicators on scroll
+    const sections = document.querySelectorAll('article > section');
+    const sidebarLinks = document.querySelectorAll('#privacy-menu > a');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      sidebarLinks.forEach(link => {
+        link.classList.remove('text-brand-600', 'bg-brand-50', 'dark:bg-brand-950/50', 'dark:text-brand-400');
+        link.classList.add('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+        
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('text-brand-600', 'bg-brand-50', 'dark:bg-brand-950/50', 'dark:text-brand-400');
+          link.classList.remove('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+        }
+      });
+    });
+
+    // Make sidebar menu item click active instantly
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        sidebarLinks.forEach(l => {
+          l.classList.remove('text-brand-600', 'bg-brand-50', 'dark:bg-brand-950/50', 'dark:text-brand-400');
+          l.classList.add('text-slate-600', 'dark:text-slate-400');
+        });
+        link.classList.add('text-brand-600', 'bg-brand-50', 'dark:bg-brand-950/50', 'dark:text-brand-400');
+      });
+    });
+  </script>
+
+<footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 border-t border-slate-800/80 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12">
+        
+        <!-- Branding column -->
+        <div class="col-span-2 space-y-4">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+              V
+            </div>
+            <span class="text-lg font-bold tracking-tight text-white">
+              Veloce<span class="text-accent-500 font-extrabold">.</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed text-slate-400">
+            Next-generation financial orchestration. Fully automated AI bucket systems designed to put your spending tracking on autopilot.
+          </p>
+          <p class="text-xs text-slate-500">
+            © <span id="current-year"></span> Veloce Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Links column 1: App Pages -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Options</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 2: Resources -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="faq.html" class="hover:text-white transition-colors">Faq Desk</a></li>
+            <li><a href="support.html" class="hover:text-white transition-colors">Support Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 3: Company -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 4: Legal -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Legal Stuff</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bank Sync Disclosure -->
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center md:text-left">
+        <p class="text-xs text-slate-600 dark:text-slate-500 leading-relaxed max-w-4xl">
+          Bank sync services provided by Plaid. Veloce AI is not a bank. Banking assets are stored and secured under bank-level encryption (AES-256) standards. Your financial tracking data is read-only.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+<script>
+(function() {
+  function initNavControls() {
+    const btn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('mobile-menu') || document.querySelector('[data-menu-content]');
+    if (btn && menu) {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      };
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
+      });
+    }
+    const themeBtn = document.getElementById('theme-toggle-btn') || document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('xsites_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch(err){}
+      };
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavControls);
+  } else {
+    initNavControls();
+  }
+})();
+</script>
+<script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlElement = document.documentElement;
+
+    function applyTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    themeToggleBtnMobile.addEventListener('click', toggleTheme);
+    applyTheme();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu if clicked outside of container
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Set Current Year in Footer dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
