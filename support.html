@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloce AI — Smart Financial Mobile Budgeting App Support</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .status-pulse::after {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      right: -14px;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          V
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-slate-900 dark:from-white dark:via-brand-400 dark:to-white bg-clip-text text-transparent">
+          Veloce<span class="text-accent-500 font-extrabold">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-brand-600 dark:text-brand-400 transition-colors">Home</a>
+        <a href="pricing.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="faq.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        <a href="support.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Support</a>
+        <a href="contact.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Nav controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon -->
+          <svg id="theme-toggle-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <!-- Sun Icon -->
+          <svg id="theme-toggle-sun" class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <a href="pricing.html" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10 hover:shadow-brand-600/20">
+          Get Veloce Free
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle and Theme Toggle for Mobile -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <!-- Theme Toggle (Mobile) -->
+        <button id="theme-toggle-btn-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- We can reuse or trigger click on main button or just let JS target both -->
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- GLOBAL HEADER NAVIGATION -->
+  
+
+  <!-- Mobile Menu Drawer (Hidden by default) -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm lg:hidden">
+    <div class="fixed right-0 top-0 bottom-0 w-80 bg-white dark:bg-slate-900 p-6 shadow-2xl transition-transform duration-300 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xl font-bold text-slate-900 dark:text-white">Menu</span>
+          <button id="mobile-menu-close" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+      </div>
+      <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+        <a href="pricing.html" class="w-full inline-flex justify-center py-3 rounded-xl bg-brand-600 text-white font-semibold">
+          Get Veloce Free
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH HERO BANNER & SYSTEM STATUS -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white dark:from-slate-950 dark:to-slate-900 pt-16 pb-20 border-b border-slate-200 dark:border-slate-800">
+    <!-- Abstract Tech Elements -->
+    <div class="absolute inset-0 z-0 opacity-30 dark:opacity-40">
+      <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-500/20 blur-3xl"></div>
+      <div class="absolute top-20 right-10 w-80 h-80 rounded-full bg-accent-500/15 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+      <!-- Tag / Live Status -->
+      <div class="inline-flex items-center space-x-2 bg-white dark:bg-slate-800 px-4 py-2 rounded-full shadow-sm border border-slate-100 dark:border-slate-700 mb-6 transition-all hover:scale-105 duration-300">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-500"></span>
+        </span>
+        <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">
+          All Veloce Sync Services Operational
+        </span>
+        <span class="text-slate-300 dark:text-slate-600">|</span>
+        <span class="text-xs font-medium text-slate-500 dark:text-slate-400">99.98% Plaid Uptime</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+        How can we help you budget?
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
+        Get immediate support with your AI tracking, smart budget buckets, bank integration, and auto-categorization.
+      </p>
+
+      <!-- Interactive Search Box -->
+      <div class="max-w-2xl mx-auto relative mb-4">
+        <form id="search-form" onsubmit="event.preventDefault(); simulateSearch();" class="relative flex items-center">
+          <div class="absolute left-4 text-slate-400 pointer-events-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            id="search-input"
+            placeholder="Search articles e.g., 'Connect Chase Bank', 'AI auto-categorize'..." 
+            class="w-full pl-12 pr-28 py-4 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 shadow-lg dark:shadow-slate-950/20 transition-all text-base"
+          >
+          <button 
+            type="submit" 
+            class="absolute right-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-all shadow"
+          >
+            Search
+          </button>
+        </form>
+
+        <!-- Search Suggestions Dropdown (simulated) -->
+        <div id="search-results-dropdown" class="absolute left-0 right-0 mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-20 text-left overflow-hidden hidden">
+          <div class="p-3 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 flex justify-between items-center">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Suggested Articles</span>
+            <button onclick="closeSearchResults()" class="text-xs text-slate-400 hover:text-slate-600">Close</button>
+          </div>
+          <ul class="divide-y divide-slate-100 dark:divide-slate-700/50">
+            <li>
+              <a href="#category-cards" class="block p-4 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                <p class="font-semibold text-sm text-brand-600 dark:text-brand-400">Troubleshooting AI Categorization Latency</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Why card charges take up to 10 minutes to register in your specific bucket.</p>
+              </a>
+            </li>
+            <li>
+              <a href="#category-cards" class="block p-4 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                <p class="font-semibold text-sm text-brand-600 dark:text-brand-400">Plaid MFA Sync Error (105)</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">How to fix authentication failure on linked high-security savings accounts.</p>
+              </a>
+            </li>
+            <li>
+              <a href="#category-cards" class="block p-4 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                <p class="font-semibold text-sm text-brand-600 dark:text-brand-400">Splitting Direct Deposits into Buckets</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Setting up auto-allocated rules dynamically whenever income is verified.</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Topic Badges -->
+      <div class="flex flex-wrap justify-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <span class="font-medium">Popular:</span>
+        <button onclick="setSearch('AI Categorization')" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors underline decoration-dotted decoration-brand-500">AI Auto-Bucket</button>
+        <span>•</span>
+        <button onclick="setSearch('Bank Reconnect')" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors underline decoration-dotted decoration-brand-500">Re-linking Bank accounts</button>
+        <span>•</span>
+        <button onclick="setSearch('Upgrade Pricing')" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors underline decoration-dotted decoration-brand-500">Veloce Pro limits</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE CATEGORIES -->
+  <section id="category-cards" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center md:text-left mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Explore Help Topics</h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-1">Select a category to find specialized troubleshooting guides and FAQs.</p>
+      </div>
+      <a href="faq.html" class="inline-flex items-center space-x-1 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700">
+        <span>Go to full FAQ Desk</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Topics Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-brand-600 dark:text-brand-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Getting Started with Veloce</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Learn how to connect your first bank via Plaid, customize initial bucket categories, and configure real-time spend alerts.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-brand-600 dark:text-brand-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Linking your primary banking cards</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ How Veloce calculates "Available To Spend"</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">AI Auto-Tracking & Engine</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Deep dive into our brand new upgrade. How our AI engine interprets pending items and assigns custom merchant labels automatically.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Training the AI on recurring dynamic expenses</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Correcting a miscategorized AI ledger item</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Buckets & Savings Goals</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Unlock maximum visibility. Set up dynamic envelope spending targets and create sub-savings structures with individual rules.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Moving funds instantly between active buckets</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Creating a locked structural emergency bucket</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-cyan-50 dark:bg-cyan-950/50 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Bank Sync & Safety Security</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Find answers about how your transaction files are fetched securely, fully encrypted, and handled as read-only material.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-cyan-600 dark:text-cyan-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ How AES-256 data standards protect you</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Troubleshooting a frozen card connection link</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Billing, Pricing & Subscription</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Manage your Veloce Premium or Veloce Elite plan, modify connected bank limits, and resolve payment processing issues.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-purple-600 dark:text-purple-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Cancelation, refund policies & pricing models</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Upgrade perks: Unlimited custom dynamic buckets</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-brand-500/50 dark:hover:border-brand-500/50 transition-all group">
+        <div class="h-12 w-12 rounded-xl bg-pink-50 dark:bg-pink-950/50 flex items-center justify-center text-pink-600 dark:text-pink-400 mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Mobile App Bugs & Compatibility</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+          Check out system constraints. Resolving issues concerning biometric logins, push notifications, and widget lag.
+        </p>
+        <ul class="space-y-2 text-xs font-semibold text-pink-600 dark:text-pink-400">
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Why widget spending availability lags slightly</span></a></li>
+          <li><a href="#" class="hover:underline flex items-center"><span>→ Biometric login (FaceID/TouchID) setup failure</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE SUPPORT & SUBMIT TICKET SECTION -->
+  <section class="bg-slate-100 dark:bg-slate-950/40 py-16 transition-colors border-t border-slate-200/60 dark:border-slate-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Column 1: Live Chat Promo (Left side, lg: 5-cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-md relative overflow-hidden">
+            <!-- Glow background decor -->
+            <div class="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-accent-500/10 blur-2xl"></div>
+
+            <div class="flex items-center space-x-2 text-accent-600 dark:text-accent-500 font-bold text-xs uppercase tracking-wider mb-2">
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-500"></span>
+              </span>
+              <span>Available Live Chat Operators</span>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+              Talk directly with a budgeting specialist.
+            </h3>
+            
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+              Skip the queue entirely. Our AI agent is ready to map transactions instantly, or we can patch you straight through to human specialists for manual bucket corrections.
+            </p>
+
+            <!-- Agent profiles -->
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="flex -space-x-2 overflow-hidden">
+                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-800" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" alt="Agent">
+                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-800" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" alt="Agent">
+                <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-800" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100&h=100" alt="Agent">
+              </div>
+              <div class="text-xs">
+                <p class="text-slate-900 dark:text-white font-semibold">Average reply: <span class="text-accent-600">under 3m</span></p>
+                <p class="text-slate-500 dark:text-slate-400">3 experts actively handling tickets</p>
+              </div>
+            </div>
+
+            <button onclick="toggleChatSim()" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white font-semibold rounded-xl text-center shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 transition-all flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+              <span>Initialize Live Help Chat</span>
+            </button>
+          </div>
+
+          <!-- Other contacts -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-sm text-center">
+              <span class="text-xs font-bold text-slate-400 block mb-1">Direct Email Desk</span>
+              <a href="mailto:support@veloceai.app" class="text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">support@veloce.ai</a>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-sm text-center">
+              <span class="text-xs font-bold text-slate-400 block mb-1">Emergency Hotline</span>
+              <span class="text-sm font-semibold text-slate-800 dark:text-slate-200">1-800-555-VELO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Ticket Submission Form (Right side, lg: 7-cols) -->
+        <div id="ticket-form-card" class="lg:col-span-7 bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-md">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Submit a Detailed Support Ticket</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Can't find your answer in our help system? Submit your issue. Our tech specialists reply within 4 hours.</p>
+          </div>
+
+          <form id="support-ticket-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label for="ticket-name" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Your Full Name</label>
+                <input 
+                  type="text" 
+                  id="ticket-name" 
+                  required
+                  placeholder="e.g. Jane Doe" 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-sm"
+                >
+              </div>
+              <div>
+                <label for="ticket-email" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Registered Email Address</label>
+                <input 
+                  type="email" 
+                  id="ticket-email" 
+                  required
+                  placeholder="e.g. jane@company.com" 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-sm"
+                >
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label for="ticket-topic" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Ticket Category</label>
+                <select 
+                  id="ticket-topic" 
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-sm"
+                >
+                  <option value="" disabled selected>Please choose a main topic...</option>
+                  <option value="bank-sync">Plaid Bank Linking & Card Issues</option>
+                  <option value="ai-category">AI Auto-Bucket Classification</option>
+                  <option value="billing">Subscribing / Pro Billing Queries</option>
+                  <option value="crash">App Crash & Operational Bug</option>
+                  <option value="other">General Feedback / Feature Suggestion</option>
+                </select>
+              </div>
+              <div>
+                <label for="ticket-priority" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Severity Level</label>
+                <select 
+                  id="ticket-priority" 
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-sm"
+                >
+                  <option value="low">Low (General Query)</option>
+                  <option value="medium" selected>Medium (Need system adjustments)</option>
+                  <option value="high">High (Unable to view available spend)</option>
+                  <option value="critical">Critical (Compromised bank connection)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="ticket-message" class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Describe what is happening</label>
+              <textarea 
+                id="ticket-message" 
+                rows="4" 
+                required
+                placeholder="Detail standard variables (e.g., 'My bucket doesn't display remaining balances after Chase visa update')..." 
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-sm resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Plaid Secure Sync Checkbox -->
+            <div class="flex items-start space-x-3 bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+              <input 
+                type="checkbox" 
+                id="ticket-auth-data" 
+                required
+                class="mt-1 h-4 w-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300 dark:border-slate-700"
+              >
+              <label for="ticket-auth-data" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                I authorize Veloce Support to inspect temporary diagnostics files representing auto-categories generated for this account. No banking transaction figures or credential names will be readable.
+              </label>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-xs text-slate-400 font-medium">Safe with 256-Bit SSL protection</span>
+              <button 
+                type="submit" 
+                class="px-8 py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition-all shadow hover:scale-102 flex items-center space-x-2"
+              >
+                <span>Dispatch Ticket</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Alert State (Hidden initially) -->
+          <div id="ticket-success-panel" class="hidden text-center py-8 space-y-4">
+            <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-accent-50 dark:bg-accent-950/40 text-accent-500 mb-2">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Ticket Submitted Successfully!</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto">
+              Our automated ticketing system has generated reference <span class="font-mono text-brand-600 dark:text-brand-400 font-bold">#VL-90872</span>. A specialist has been assigned and will email you back within 4 hours.
+            </p>
+            <button onclick="resetTicketForm()" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold">
+              Submit another query
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE CHAT EMBED SIMULATION SYSTEM -->
+  <div id="chat-sim-wrapper" class="fixed bottom-6 right-6 z-50 w-96 bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hidden transition-all duration-300 translate-y-4">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-brand-600 to-indigo-600 p-4 text-white flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="relative h-10 w-10">
+          <img class="h-10 w-10 rounded-full border-2 border-white/20" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100&h=100" alt="Agent">
+          <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-accent-500 ring-2 ring-white"></span>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm">Veloce AI Assistant</h4>
+          <p class="text-xs text-white/80">Support Crew • Active</p>
+        </div>
+      </div>
+      <button onclick="toggleChatSim()" class="text-white/80 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Chat Messages Window -->
+    <div class="p-4 h-80 overflow-y-auto space-y-4 bg-slate-50 dark:bg-slate-950/60" id="chat-msg-area">
+      <!-- Bot Message -->
+      <div class="flex items-start space-x-2.5">
+        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">V</div>
+        <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm text-xs text-slate-800 dark:text-slate-200 max-w-[80%] leading-relaxed">
+          Hello! I'm the Veloce AI Agent. Ask me anything about tracking metrics, card connections, or bucket distributions!
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form onsubmit="sendSimMsg(event)" class="p-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-2">
+      <input 
+        type="text" 
+        id="chat-sim-input"
+        required
+        placeholder="Type here e.g. 'How do I edit my buckets?'..." 
+        class="flex-grow px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
+      >
+      <button type="submit" class="p-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl">
+        <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- UPCOMING SYSTEM MAINTENANCE NOTIFIER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 dark:from-amber-500/5 dark:to-orange-500/5 border border-amber-500/30 dark:border-amber-500/20 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-4">
+        <div class="h-12 w-12 rounded-2xl bg-amber-500/20 text-amber-600 dark:text-amber-500 flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white">Scheduled Sync Provider Upgrades</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-xs mt-0.5 max-w-xl">
+            Plaid will undergo maintenance on Sunday between 02:00 and 04:00 UTC. Bank statement auto-sync features may be delayed by up to 2 hours during this window. AI categorization functions will queue and execute immediately following the update.
+          </p>
+        </div>
+      </div>
+      <a href="faq.html" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold rounded-xl text-xs whitespace-nowrap transition-colors">
+        Read System Logs
+      </a>
+    </div>
+  </section>
+
+  <!-- GLOBAL FOOTER -->
+  
+
+  <!-- JAVASCRIPT SYSTEM LOGIC -->
+  <script>
+    // Theme Toggling Logic
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+
+    function initTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    if (themeBtn) themeBtn.addEventListener('click', toggleDarkMode);
+    if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleDarkMode);
+    initTheme();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+      });
+    }
+    if (mobileMenuClose && mobileMenu) {
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    }
+
+    // Set Current Year dynamically
+    const currentYearElem = document.getElementById('current-year');
+    if (currentYearElem) {
+      currentYearElem.textContent = new Date().getFullYear();
+    }
+
+    // Search Engine Simulation
+    function setSearch(term) {
+      document.getElementById('search-input').value = term;
+      simulateSearch();
+    }
+
+    function simulateSearch() {
+      const dropDown = document.getElementById('search-results-dropdown');
+      if (dropDown) {
+        dropDown.classList.remove('hidden');
+        // Scroll slightly down to make suggestions visible
+        dropDown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function closeSearchResults() {
+      const dropDown = document.getElementById('search-results-dropdown');
+      if (dropDown) {
+        dropDown.classList.add('hidden');
+      }
+    }
+
+    // Ticket Form Simulation
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      // Hide form contents, show victory state panel
+      const form = document.getElementById('support-ticket-form');
+      const succ = document.getElementById('ticket-success-panel');
+      if (form && succ) {
+        form.classList.add('hidden');
+        succ.classList.remove('hidden');
+      }
+    }
+
+    function resetTicketForm() {
+      const form = document.getElementById('support-ticket-form');
+      const succ = document.getElementById('ticket-success-panel');
+      if (form && succ) {
+        form.reset();
+        form.classList.remove('hidden');
+        succ.classList.add('hidden');
+      }
+    }
+
+    // Live Chat Simulation Box
+    function toggleChatSim() {
+      const chatWrap = document.getElementById('chat-sim-wrapper');
+      if (chatWrap) {
+        if (chatWrap.classList.contains('hidden')) {
+          chatWrap.classList.remove('hidden');
+          setTimeout(() => {
+            chatWrap.classList.remove('translate-y-4');
+          }, 50);
+        } else {
+          chatWrap.classList.add('translate-y-4');
+          setTimeout(() => {
+            chatWrap.classList.add('hidden');
+          }, 200);
+        }
+      }
+    }
+
+    function sendSimMsg(event) {
+      event.preventDefault();
+      const input = document.getElementById('chat-sim-input');
+      const msgArea = document.getElementById('chat-msg-area');
+      if (!input || !msgArea || !input.value.trim()) return;
+
+      const userText = input.value.trim();
+      input.value = '';
+
+      // Create User Message Element
+      const userMsg = document.createElement('div');
+      userMsg.className = "flex items-start space-x-2.5 justify-end";
+      userMsg.innerHTML = `
+        <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-xs max-w-[80%] leading-relaxed">
+          ${userText}
+        </div>
+      `;
+      msgArea.appendChild(userMsg);
+      msgArea.scrollTop = msgArea.scrollHeight;
+
+      // Simulated Bot Reply
+      setTimeout(() => {
+        const botReply = document.createElement('div');
+        botReply.className = "flex items-start space-x-2.5";
+        
+        let responseText = "I see you're asking about your Veloce configuration. Let me analyze your ledger variables to resolve this.";
+        if (userText.toLowerCase().includes('bucket')) {
+          responseText = "To allocate transactions into customized buckets, go to settings, click 'Dynamic Bucket Rules', and let our AI recognize that specific card merchant signature dynamically.";
+        } else if (userText.toLowerCase().includes('plaid') || userText.toLowerCase().includes('bank')) {
+          responseText = "If Plaid disconnects frequently, check if your bank requires multi-factor token approval weekly. Veloce holds bank-grade AES-256 shields for these operations.";
+        }
+
+        botReply.innerHTML = `
+          <div class="flex-shrink-0 h-8 w-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">V</div>
+          <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm text-xs text-slate-800 dark:text-slate-200 max-w-[80%] leading-relaxed">
+            ${responseText}
+          </div>
+        `;
+        msgArea.appendChild(botReply);
+        msgArea.scrollTop = msgArea.scrollHeight;
+      }, 1000);
+    }
+  </script>
+
+<footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 border-t border-slate-800/80 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12">
+        
+        <!-- Branding column -->
+        <div class="col-span-2 space-y-4">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+              V
+            </div>
+            <span class="text-lg font-bold tracking-tight text-white">
+              Veloce<span class="text-accent-500 font-extrabold">.</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed text-slate-400">
+            Next-generation financial orchestration. Fully automated AI bucket systems designed to put your spending tracking on autopilot.
+          </p>
+          <p class="text-xs text-slate-500">
+            © <span id="current-year"></span> Veloce Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Links column 1: App Pages -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Options</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 2: Resources -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="faq.html" class="hover:text-white transition-colors">Faq Desk</a></li>
+            <li><a href="support.html" class="hover:text-white transition-colors">Support Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 3: Company -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 4: Legal -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Legal Stuff</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bank Sync Disclosure -->
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center md:text-left">
+        <p class="text-xs text-slate-600 dark:text-slate-500 leading-relaxed max-w-4xl">
+          Bank sync services provided by Plaid. Veloce AI is not a bank. Banking assets are stored and secured under bank-level encryption (AES-256) standards. Your financial tracking data is read-only.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+<script>
+(function() {
+  function initNavControls() {
+    const btn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('mobile-menu') || document.querySelector('[data-menu-content]');
+    if (btn && menu) {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      };
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
+      });
+    }
+    const themeBtn = document.getElementById('theme-toggle-btn') || document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('xsites_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch(err){}
+      };
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavControls);
+  } else {
+    initNavControls();
+  }
+})();
+</script>
+<script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlElement = document.documentElement;
+
+    function applyTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    themeToggleBtnMobile.addEventListener('click', toggleTheme);
+    applyTheme();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu if clicked outside of container
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Set Current Year in Footer dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
