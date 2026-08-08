@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Veloce AI</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          V
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-slate-900 dark:from-white dark:via-brand-400 dark:to-white bg-clip-text text-transparent">
+          Veloce<span class="text-accent-500 font-extrabold">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-brand-600 dark:text-brand-400 transition-colors">Home</a>
+        <a href="pricing.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="faq.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        <a href="support.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Support</a>
+        <a href="contact.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Nav controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon -->
+          <svg id="theme-toggle-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <!-- Sun Icon -->
+          <svg id="theme-toggle-sun" class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <a href="pricing.html" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10 hover:shadow-brand-600/20">
+          Get Veloce Free
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle and Theme Toggle for Mobile -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <!-- Theme Toggle (Mobile) -->
+        <button id="theme-toggle-btn-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- We can reuse or trigger click on main button or just let JS target both -->
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- GLOBAL HEADER NAVIGATION -->
+  
+
+  <!-- MAIN HERO SECTION -->
+  <section class="relative py-16 lg:py-24 overflow-hidden border-b border-slate-200 dark:border-slate-900/60 bg-gradient-to-b from-slate-100/50 via-slate-50 to-white dark:from-slate-950 dark:via-slate-950/80 dark:to-slate-950">
+    <!-- Grid Overlay -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-900/40 mb-6">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2.162 10.206a.75.75 0 011.026-.232L8.5 13.25l7.312-6.03a.75.75 0 11.95 1.16l-8 6.6a.75.75 0 01-.95 0l-5.625-4.25a.75.75 0 01-.225-1.024z" clip-rule="evenodd"></path></svg>
+        <span>Last updated: October 24, 2023</span>
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-3xl mx-auto">
+        Terms of <span class="bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">Service</span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Please read these terms carefully before utilizing the Veloce AI platform, banking integrations, and real-time automated budgeting system.
+      </p>
+
+      <!-- Print & Share bar -->
+      <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
+        <button onclick="window.print()" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-[1.02]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          <span>Print Document</span>
+        </button>
+        <button id="copy-link-btn" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-[1.02]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+          <span id="copy-btn-text">Share Document Link</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION WITH SIDEBAR -->
+  <section class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Sticky Sidebar Quick Navigation -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-6">
+        <!-- Interactive search of terms -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-900 shadow-sm">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Quick Find</h3>
+          <div class="relative">
+            <input type="text" id="terms-search" placeholder="Search terms (e.g., AI, Plaid...)" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 dark:focus:ring-brand-400 transition-all text-slate-900 dark:text-white" />
+            <span class="absolute right-3 top-3.5 text-slate-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Section Navigation links -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-900 shadow-sm">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Jump To Section</h3>
+          
+        </div>
+
+        <!-- Help Info Box -->
+        <div class="bg-gradient-to-tr from-brand-600 to-accent-600 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+          <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+          <h4 class="text-base font-bold mb-2">Need direct legal help?</h4>
+          <p class="text-sm text-brand-100 mb-4 leading-relaxed">
+            Have questions about your data privacy or bank synchronization agreements with Plaid? We are here to clarify.
+          </p>
+          <a href="contact.html" class="inline-flex items-center space-x-2 text-sm font-semibold bg-white text-slate-900 px-4 py-2 rounded-xl shadow-md hover:bg-slate-50 hover:scale-105 transition-all">
+            <span>Contact Legal Desk</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Terms Body Content -->
+      <main class="lg:col-span-8 space-y-12">
+        
+        <!-- Search Notice Alert (Hidden by default) -->
+        <div id="search-alert" class="hidden p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 text-amber-800 dark:text-amber-400 text-sm">
+          Currently filtering sections based on your query. <button onclick="clearSearch()" class="underline font-semibold ml-1">Clear Search</button>
+        </div>
+
+        <!-- SECTION 1 -->
+        <article id="acceptance" class="terms-section transition-all duration-300">
+          <!-- TL;DR Highlight Card -->
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            By installing Veloce AI and registering an account, you legally agree to be bound by these entire terms. If you don't agree, you cannot use our platform.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">1. Acceptance of Terms</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              Welcome to Veloce AI (the "Platform" or "Service"), owned and operated by Veloce Technologies, Inc. ("Veloce", "we", "us", or "our"). These Terms of Service ("Terms") govern your access to and use of our financial budgeting mobile application, websites, AI engines, browser extensions, APIs, and overall system software.
+            </p>
+            <p>
+              By accessing, downloading, registering, or interacting with Veloce AI, you agree that you have read, understood, and accept to be legally bound by these Terms, along with our <a href="privacy.html" class="text-brand-600 hover:underline">Privacy Policy</a> and other governing directives linked throughout. If you disagree with any portion of these binding terms, you are requested to cease installation immediately and delete all existing Veloce account instances.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 2 -->
+        <article id="description" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            Veloce AI coordinates card/bank tracking automatically, sorting it into customizable budget buckets. We are a software service, not an official bank or licensed broker.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">2. Description of Veloce AI Services</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              Veloce AI is an automated next-generation financial budgeting platform that tracks user cash flow, automates allocation of expenses into distinct "budget buckets", and evaluates spending patterns via AI models. 
+            </p>
+            <p>
+              Our automated system synchronizes transaction histories dynamically from card issuers, banks, and processing institutions, sorting raw text into user-defined categories. These categories reflect current active budgets, letting you easily see in real-time how much spending limit is available in each.
+            </p>
+            <p class="font-semibold text-slate-900 dark:text-white">
+              Important Disclaimer: Veloce AI is not a licensed depository institution, broker-dealer, investment advisor, or registered tax consulting firm. All automated budgeting estimations, suggestions, and alerts are computed purely as statistical approximations and are not meant to replace verified personal CPA suggestions.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 3 -->
+        <article id="registration" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            Keep your credentials confidential. You must be at least 18 years of age to register. You are liable for any breach or compromise of your mobile account.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">3. Account Registration &amp; Security</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              To fully utilize the smart categorization AI and automatic sync features, you must create a verified login profile on our app. By registering, you affirm that:
+            </p>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+              <li>You are at least eighteen (18) years of age or have legal adulthood status in your territory.</li>
+              <li>You will submit accurate, truthful, and updated details about your true identity, contacts, and cards.</li>
+              <li>You will not build multiple virtual accounts or lease accounts to third parties without direct Veloce approval.</li>
+            </ul>
+            <p>
+              You are singularly responsible for retaining account password combinations, secure biometric identifiers, and email verifications. Veloce Technologies, Inc. shall not be held liable for any loss stemming from unauthorized account access or data exposure resulting from hardware loss, phone theft, or unmitigated security lapses.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 4 -->
+        <article id="bank-sync" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            We use Plaid for read-only banking integrations. We secure data using industry-standard AES-256 encryption and never sell your financial records.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">4. Banking Sync, AI &amp; Data Integration</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              By utilizing the automatic tracking features within Veloce AI, you expressly grant permission to the app and our secure sub-processors (specifically Plaid) to establish a read-only stream of data from your authorized financial institutions. 
+            </p>
+            <p>
+              This syncing configuration allows us to download historical transactions, recurring billing events, card networks, ledger balances, and name descriptors. This data is fully processed locally and on secure servers under AES-256 bank-grade encryption standards. 
+            </p>
+            <p class="font-semibold text-slate-950 dark:text-slate-100">
+              Veloce AI is incapable of carrying out actual monetary transactions, moving assets, or initiating wire transfers. Your bank credentials are never stored directly on Veloce databases; they are tokenized exclusively through Plaid infrastructure.
+            </p>
+            <p>
+              The integrated AI engine analyzes structural transaction parameters to dynamically sort details into appropriate digital buckets. While our AI works to achieve maximum sorting accuracy, the auto-categorization feature is provided as-is, and users must routinely check balance structures to verify correctness.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 5 -->
+        <article id="fees" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            Premium accounts auto-renew on a monthly/annual cycle. You can cancel at any time via App Store settings or the Veloce billing dashboard.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">5. Fees, Subscriptions &amp; Payments</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              Veloce AI provides basic budgeting tools under our Free Tier, as well as advanced premium auto-sync, deep AI modeling, and unlimited bucket capabilities under a paid Premium Tier model (pricing terms specified during checkout).
+            </p>
+            <p>
+              Subscriptions auto-renew periodically depending on your selected monthly or yearly billing plan. You agree that your authorized debit/credit card or app store configuration will be automatically charged at the designated rate on the recurrence day.
+            </p>
+            <p>
+              Cancellations can be made easily inside the user settings panel before the next subscription cycle begins. Veloce is not obligated to offer pro-rated returns or retroactive refunds for mid-cycle cancellations except as mandated under local territory law.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 6 -->
+        <article id="conduct" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            No automated scraping, hacking attempts, or injecting of malicious payloads. We suspend users who attempt to attack our AI servers.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">6. User Conduct &amp; Content Guidelines</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              As a condition of using Veloce AI, you agree not to engage in malicious activities, including but not limited to:
+            </p>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+              <li>Reverse engineering the algorithmic models or budget categorization databases.</li>
+              <li>Using automated software scripts, scrapers, crawlers, or harvesting tools to extract transactional data.</li>
+              <li>Submitting fraudulent financial credentials, mimicking corporate banking institutions, or spoofing mock accounts.</li>
+              <li>Attempting to compromise Veloce AI's firewall structure, API endpoints, or user databases.</li>
+            </ul>
+            <p>
+              Violation of these safety guidelines will trigger immediate account suspension and, when applicable, formal escalation to regulatory and criminal investigation agencies.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 7 -->
+        <article id="ip" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            All app designs, logo styles, AI assets, and backend code are protected proprietary intellectual property of Veloce Technologies, Inc.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">7. Intellectual Property Rights</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              All software elements, user interfaces, branding structures, illustrations, graphic designs, proprietary categorization code, trade secrets, logos, and patents related to Veloce AI remain the exclusive intellectual property of Veloce Technologies, Inc. 
+            </p>
+            <p>
+              You receive a highly restricted, personal, non-exclusive, non-transferable, and revocable app usage license strictly for individual, non-commercial purposes. No trademark rights, brand associations, or code utilization permissions are transferred to you under these Terms of Service.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 8 -->
+        <article id="disclaimers" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            The platform is provided strictly "as-is". We cannot guarantee complete network uptime or perfect automated bank categorization at all times.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">8. Disclaimers of Warranties</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              VELOCE AI SERVICES AND DIGITAL PROPERTY ARE PROVIDED ON AN "AS-IS" AND "AS-AVAILABLE" RUNNING BASIS, WITHOUT EXPRESS OR IMPLIED WARRANTIES OF ANY KIND. TO THE FULLEST EXTENT PERMISSIBLE BY CURRENT APPLICABLE STATUTE, VELOCE TECHNOLOGIES, INC. DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO:
+            </p>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+              <li>UNINTERRUPTED NETWORK CONNECTION OR BUG-FREE CODE PERFORMANCE.</li>
+              <li>IMPECCABLE CLASSIFICATION OF FINANCIAL EXPENDITURES OR PERMANENT SYNC STABILITY.</li>
+              <li>FITNESS FOR A SPECIFIC FINANCIAL PURPOSE OR STRATEGY.</li>
+            </ul>
+            <p>
+              BECAUSE VELOCE RELIES UPON THIRD-PARTY API ACCESS (INCLUDING PLAID) AND REGULAR INTEGRATED BANK FEED UPDATES, ANY UNPLANNED DISRUPTIONS TO BANK SYSTEMS MAY INTERRUPT PORTIONS OF OUR AUTO-CATEGORIZATION FLOW.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 9 -->
+        <article id="limitation" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            Our total liability is limited to the exact amount you paid us in subscription fees over the preceding 12 months.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">9. Limitation of Liability</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              IN NO CIRCUMSTANCES SHALL VELOCE TECHNOLOGIES, INC., ITS CHIEF EXECUTIVES, AFFILIATED DIRECTORS, CORE SUB-CONTRACTORS, OR DEEP TECH ENGINE PROVIDERS BE HELD LIABLE FOR ANY INDIRECT, INCIDENTAL, EXEMPLARY, SPECIAL, CONTEXTUAL, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING WITHOUT RESTRICTION: ASSET DEPLETION, ERRORS IN INVESTMENT OUTCOMES, OR OVERDRAFT CHARGES).
+            </p>
+            <p>
+              OUR TOTAL COMPREHENSIVE LIABILITY TO YOU FOR ANY AND ALL DISPUTES OR CAUSES OF ACTION SHALL BE CAPPED SOLELY AT THE TOTAL ACCUMULATED AMOUNT ACTUALLY TRANSFERRED BY YOU TO VELOCE TECHNOLOGIES, INC. DURING THE PRECEDING TWELVE (12) MONTH CORRESPONDING TO THE ACCRUED CLAIM.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 10 -->
+        <article id="governing" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            These Terms are governed by Delaware state law. Any legal disputes will be resolved through individual binding arbitration.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">10. Governing Law &amp; Dispute Resolution</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              These Terms of Service and your structural use of the Veloce AI systems are constructed and governed in full compliance with the domestic internal statutes of the State of Delaware, without regard to conflicts of legal principles.
+            </p>
+            <p>
+              Any formal legal dispute, structural controversy, or claim arising under this document shall be settled exclusively via final and binding individual arbitration managed by the American Arbitration Association (AAA) under its streamlined Commercial Arbitration Rules. You agree to resolve all legal matters individually, waiving all rights to join class-action legal proceedings.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 11 -->
+        <article id="modifications" class="terms-section transition-all duration-300">
+          <div class="mb-4 p-4 rounded-xl bg-brand-50/70 dark:bg-slate-900 border-l-4 border-brand-500 text-slate-700 dark:text-slate-300 text-xs">
+            <span class="font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block mb-1">TL;DR Summary</span>
+            We may occasionally update these terms to match new AI capabilities. Continued use of Veloce AI indicates your acceptance of updated terms.
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">11. Modifications to Terms</h2>
+          <div class="prose dark:prose-invert text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
+            <p>
+              We reserve the exclusive operational right to update, modify, or completely re-write portions of these Terms of Service at any given time. Whenever material updates occur, we will post the updated document version directly on this legal page, and issue an email notification or push notification alert directly to your active Veloce app.
+            </p>
+            <p>
+              Your subsequent usage of Veloce AI following the publication of revised terms indicates your formal consent to the new terms. We advise users to routinely visit this terms interface to review policies.
+            </p>
+          </div>
+        </article>
+
+        <!-- Dynamic Empty Search State -->
+        <div id="no-results-state" class="hidden text-center py-16 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8">
+          <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 text-slate-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">No Matching Sections Found</h3>
+          <p class="text-slate-500 dark:text-slate-400 mt-2 max-w-sm mx-auto">
+            We couldn't find terms matching your keyword. Try searching for "Plaid", "AI", "arbitration", or "subscription".
+          </p>
+          <button onclick="clearSearch()" class="mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition-colors">
+            Reset Search Filter
+          </button>
+        </div>
+
+      </main>
+
+    </div>
+  </section>
+
+  <!-- DYNAMIC NEWSLETTER CALL-TO-ACTION (Conversion Booster) -->
+  <section class="bg-white dark:bg-slate-900/60 border-t border-b border-slate-200 dark:border-slate-900/80 py-16 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl bg-slate-900 dark:bg-slate-950 overflow-hidden py-12 px-6 sm:px-12 lg:py-16 lg:px-20 shadow-2xl">
+        <!-- Abstract gradient mesh overlay -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/20 via-transparent to-accent-500/20 pointer-events-none"></div>
+        <div class="absolute -top-24 -left-24 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7">
+            <span class="text-accent-500 text-xs font-bold uppercase tracking-wider block mb-2">Automated Budget Safety</span>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+              Get weekly budget optimization tips straight to your inbox
+            </h2>
+            <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-lg leading-relaxed">
+              We process everything securely. Receive automated analytical patterns detailing how to keep your budget buckets organized without the stress.
+            </p>
+          </div>
+          <div class="lg:col-span-5">
+            <form id="newsletter-form" class="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:space-x-3">
+              <div class="flex-grow">
+                <input type="email" required placeholder="Enter secure personal email" class="w-full bg-slate-800 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500" />
+              </div>
+              <button type="submit" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-accent-500 hover:bg-accent-600 text-white text-sm font-bold shadow-lg shadow-accent-500/10 hover:shadow-accent-500/20 transition-all">
+                Subscribe
+              </button>
+            </form>
+            <p id="newsletter-success" class="hidden mt-3 text-xs text-accent-400 font-medium">
+              ✓ Successfully subscribed! You will now receive budget security alerts.
+            </p>
+            <p class="mt-2 text-slate-500 text-xs">
+              No spam. Unsubscribe at any time. Read-only structural analytics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL FOOTER -->
+  
+
+  <!-- SCRIPTING LOGIC -->
+  <script>
+    // Theme toggler logic with storage persistence
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlEl = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Initialize theme based on preference or system settings
+    const storedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+
+    // Button event listeners
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = htmlEl.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+    }
+    if (themeBtnMobile) {
+      themeBtnMobile.addEventListener('click', () => {
+        const isDark = htmlEl.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Set Dynamic Year
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Interactive Search of terms
+    const searchInput = document.getElementById('terms-search');
+    const sections = document.querySelectorAll('.terms-section');
+    const alertBox = document.getElementById('search-alert');
+    const noResultsState = document.getElementById('no-results-state');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let matchedCount = 0;
+
+        if (query.length > 0) {
+          alertBox.classList.remove('hidden');
+          sections.forEach((section) => {
+            const txt = section.textContent.toLowerCase();
+            if (txt.includes(query)) {
+              section.classList.remove('hidden');
+              matchedCount++;
+            } else {
+              section.classList.add('hidden');
+            }
+          });
+
+          if (matchedCount === 0) {
+            noResultsState.classList.remove('hidden');
+          } else {
+            noResultsState.classList.add('hidden');
+          }
+        } else {
+          clearSearch();
+        }
+      });
+    }
+
+    function clearSearch() {
+      if (searchInput) {
+        searchInput.value = '';
+      }
+      if (alertBox) {
+        alertBox.classList.add('hidden');
+      }
+      if (noResultsState) {
+        noResultsState.classList.add('hidden');
+      }
+      sections.forEach((section) => {
+        section.classList.remove('hidden');
+      });
+    }
+
+    // Share link copy confirmation
+    const copyBtn = document.getElementById('copy-link-btn');
+    const copyText = document.getElementById('copy-btn-text');
+    if (copyBtn && copyText) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href);
+        const originalText = copyText.textContent;
+        copyText.textContent = "Link Copied!";
+        copyBtn.classList.add('border-accent-500', 'text-accent-500');
+        setTimeout(() => {
+          copyText.textContent = originalText;
+          copyBtn.classList.remove('border-accent-500', 'text-accent-500');
+        }, 2000);
+      });
+    }
+
+    // Newsletter simulation
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterSuccess = document.getElementById('newsletter-success');
+    if (newsletterForm && newsletterSuccess) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        newsletterForm.classList.add('hidden');
+        newsletterSuccess.classList.remove('hidden');
+      });
+    }
+
+    // Dynamic Active scroll highlighting for TOC
+    const tocLinks = document.querySelectorAll('#toc-nav a');
+    window.addEventListener('scroll', () => {
+      let currentSectionId = "";
+      sections.forEach((sec) => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top - 200) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      tocLinks.forEach((link) => {
+        link.classList.remove('text-brand-600', 'dark:text-brand-400', 'bg-brand-50/50', 'dark:bg-slate-800/40');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('text-brand-600', 'dark:text-brand-400', 'bg-brand-50/50', 'dark:bg-slate-800/40');
+        }
+      });
+    });
+  </script>
+
+<footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 border-t border-slate-800/80 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12">
+        
+        <!-- Branding column -->
+        <div class="col-span-2 space-y-4">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+              V
+            </div>
+            <span class="text-lg font-bold tracking-tight text-white">
+              Veloce<span class="text-accent-500 font-extrabold">.</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed text-slate-400">
+            Next-generation financial orchestration. Fully automated AI bucket systems designed to put your spending tracking on autopilot.
+          </p>
+          <p class="text-xs text-slate-500">
+            © <span id="current-year"></span> Veloce Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Links column 1: App Pages -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Options</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 2: Resources -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="faq.html" class="hover:text-white transition-colors">Faq Desk</a></li>
+            <li><a href="support.html" class="hover:text-white transition-colors">Support Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 3: Company -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 4: Legal -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Legal Stuff</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bank Sync Disclosure -->
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center md:text-left">
+        <p class="text-xs text-slate-600 dark:text-slate-500 leading-relaxed max-w-4xl">
+          Bank sync services provided by Plaid. Veloce AI is not a bank. Banking assets are stored and secured under bank-level encryption (AES-256) standards. Your financial tracking data is read-only.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+<script>
+(function() {
+  function initNavControls() {
+    const btn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('mobile-menu') || document.querySelector('[data-menu-content]');
+    if (btn && menu) {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      };
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
+      });
+    }
+    const themeBtn = document.getElementById('theme-toggle-btn') || document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('xsites_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch(err){}
+      };
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavControls);
+  } else {
+    initNavControls();
+  }
+})();
+</script>
+<script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlElement = document.documentElement;
+
+    function applyTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    themeToggleBtnMobile.addEventListener('click', toggleTheme);
+    applyTheme();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu if clicked outside of container
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Set Current Year in Footer dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
