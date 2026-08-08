@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloce AI — Smart Financial Mobile Budgeting App</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col antialiased">
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          V
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-slate-900 dark:from-white dark:via-brand-400 dark:to-white bg-clip-text text-transparent">
+          Veloce<span class="text-accent-500 font-extrabold">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-brand-600 dark:text-brand-400 transition-colors">Home</a>
+        <a href="pricing.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="faq.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        <a href="support.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Support</a>
+        <a href="contact.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Nav controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon -->
+          <svg id="theme-toggle-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <!-- Sun Icon -->
+          <svg id="theme-toggle-sun" class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <a href="pricing.html" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10 hover:shadow-brand-600/20">
+          Get Veloce Free
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle and Theme Toggle for Mobile -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <!-- Theme Toggle (Mobile) -->
+        <button id="theme-toggle-btn-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- We can reuse or trigger click on main button or just let JS target both -->
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- GLOBAL STICKY HEADER -->
+  
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-slate-950/50 backdrop-blur-sm lg:hidden transition-opacity">
+    <div class="fixed top-20 right-4 left-4 rounded-2xl bg-white dark:bg-slate-900 p-6 border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col space-y-4">
+      <a href="index.html" class="px-4 py-3 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 font-semibold">Home</a>
+      <a href="pricing.html" class="px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Pricing</a>
+      <a href="faq.html" class="px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">FAQ</a>
+      <a href="support.html" class="px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Support</a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Contact</a>
+      <hr class="border-slate-100 dark:border-slate-800 my-2">
+      <a href="pricing.html" class="w-full text-center py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition-all">
+        Get Veloce Free
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-grow">
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 bg-gradient-to-b from-white via-indigo-50/20 to-transparent dark:from-slate-950 dark:via-slate-900/30 dark:to-transparent">
+      <!-- Glow Gradients -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-accent-500/10 dark:bg-accent-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <!-- Upgrade Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-100/60 dark:bg-accent-500/10 border border-accent-200 dark:border-accent-500/20 text-accent-700 dark:text-accent-400 text-sm font-semibold tracking-wide">
+              <span class="flex h-2.5 w-2.5 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-500"></span>
+              </span>
+              NEW: Fully Automated AI Tracking Upgraded
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+              Your Money. Organized.<br>
+              <span class="bg-gradient-to-r from-brand-600 via-violet-500 to-accent-500 bg-clip-text text-transparent">
+                Completely Automatically.
+              </span>
+            </h1>
+
+            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-medium">
+              Say goodbye to manual expense entering. Veloce instantly pulls and categorizes your banking and credit card activity into tailored budget buckets, mapping out your daily spendability in real-time.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+              <a href="pricing.html" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-950 text-base font-bold transition-all shadow-xl shadow-slate-900/10 dark:shadow-white/5 group">
+                Download the App
+                <svg class="w-5 h-5 ml-2.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
+              <a href="pricing.html" class="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900/60 text-slate-700 dark:text-slate-300 text-base font-bold transition-all">
+                View Pricing Plan
+              </a>
+            </div>
+
+            <!-- Simple Trust Proof -->
+            <div class="pt-6 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 border-t border-slate-200 dark:border-slate-900">
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">4.9★</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">App Store Rating</p>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">1.2M+</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Active Budgets</p>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">256-Bit</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Bank-Grade Security</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Phone Mockup / Creative Display -->
+          <div class="lg:col-span-5 relative flex justify-center">
+            <div class="relative w-72 sm:w-80 h-[600px] bg-slate-900 dark:bg-slate-900 rounded-[50px] p-3.5 shadow-2xl ring-12 ring-slate-900/10 dark:ring-slate-950/30 overflow-hidden border-4 border-slate-800 dark:border-slate-700">
+              
+              <!-- Phone notch/speaker -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 h-5 w-32 bg-slate-900 dark:bg-slate-900 rounded-b-2xl z-20 flex items-center justify-center">
+                <span class="block w-12 h-1 bg-slate-700 rounded-full"></span>
+              </div>
+
+              <!-- Phone Content (CSS Dashboard Mockup) -->
+              <div class="h-full w-full bg-slate-950 rounded-[38px] p-5 pt-8 overflow-y-auto no-scrollbar text-white flex flex-col space-y-5">
+                
+                <!-- Quick User Header -->
+                <div class="flex items-center justify-between mt-1">
+                  <div>
+                    <p class="text-xs text-slate-400">Welcome back,</p>
+                    <p class="text-base font-bold">Alexander 👋</p>
+                  </div>
+                  <div class="h-8 w-8 rounded-full bg-brand-500 flex items-center justify-center font-bold text-xs text-white">
+                    AL
+                  </div>
+                </div>
+
+                <!-- Live Safe to Spend -->
+                <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-4 shadow-lg shadow-brand-600/30 relative overflow-hidden">
+                  <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                  <p class="text-xs text-indigo-100 uppercase tracking-wider font-semibold">Safe To Spend Today</p>
+                  <p class="text-3xl font-extrabold mt-1">$142.50</p>
+                  <p class="text-[10px] text-indigo-200 mt-2">All other bills and budgets accounted for.</p>
+                </div>
+
+                <!-- Interactive Buckets Mockup -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <p class="text-xs font-bold text-slate-400">Budget Buckets</p>
+                    <span class="text-[10px] text-brand-400 font-semibold">3 Active</span>
+                  </div>
+                  
+                  <div class="space-y-2">
+                    <!-- Bucket 1 -->
+                    <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+                      <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold flex items-center gap-1.5">🍕 Dining Out</span>
+                        <span class="text-xs font-bold text-emerald-400">$85.00 Left</span>
+                      </div>
+                      <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-emerald-400 h-full w-[65%]"></div>
+                      </div>
+                    </div>
+                    <!-- Bucket 2 -->
+                    <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+                      <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold flex items-center gap-1.5">🎬 Entertainment</span>
+                        <span class="text-xs font-bold text-brand-400">$32.10 Left</span>
+                      </div>
+                      <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-brand-400 h-full w-[40%]"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Auto-Classify Stream -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <p class="text-xs font-bold text-slate-400">Auto-Categorized (AI Live)</p>
+                    <span class="text-[10px] bg-accent-500/20 text-accent-400 px-1.5 py-0.5 rounded-full font-bold">Chase Card</span>
+                  </div>
+
+                  <div class="space-y-2">
+                    <!-- Transaction 1 -->
+                    <div class="bg-slate-900/50 rounded-xl p-3 border border-slate-800/40 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <div class="h-8 w-8 rounded-lg bg-green-500/10 flex items-center justify-center text-xs text-green-400 font-bold">
+                          $
+                        </div>
+                        <div>
+                          <p class="text-xs font-bold">Whole Foods</p>
+                          <span class="text-[9px] bg-brand-500/20 text-brand-400 px-1.5 py-0.2 rounded-full">Groceries</span>
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <p class="text-xs font-bold text-slate-200">-$34.20</p>
+                        <p class="text-[8px] text-accent-400 font-medium">Auto-Synced</p>
+                      </div>
+                    </div>
+                    <!-- Transaction 2 -->
+                    <div class="bg-slate-900/50 rounded-xl p-3 border border-slate-800/40 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <div class="h-8 w-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-xs text-indigo-400 font-bold">
+                          ⚡
+                        </div>
+                        <div>
+                          <p class="text-xs font-bold">Uber Ride</p>
+                          <span class="text-[9px] bg-yellow-500/20 text-yellow-400 px-1.5 py-0.2 rounded-full">Transport</span>
+                        </div>
+                      </div>
+                      <div class="text-right">
+                        <p class="text-xs font-bold text-slate-200">-$18.50</p>
+                        <p class="text-[8px] text-accent-400 font-medium">Auto-Synced</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+            <!-- Absolute Elements surrounding phone -->
+            <div class="absolute -left-12 top-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce duration-[4000ms] max-w-[180px]">
+              <div class="h-9 w-9 rounded-full bg-accent-100 dark:bg-accent-900/50 flex items-center justify-center text-accent-600">🚀</div>
+              <div>
+                <p class="text-[10px] text-slate-400">Total Saved</p>
+                <p class="text-sm font-extrabold text-slate-900 dark:text-white">+$432/mo</p>
+              </div>
+            </div>
+
+            <div class="absolute -right-12 bottom-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse max-w-[190px]">
+              <div class="h-9 w-9 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600">🤖</div>
+              <div>
+                <p class="text-[10px] text-slate-400">AI Accuracy</p>
+                <p class="text-sm font-extrabold text-slate-900 dark:text-white">99.8% Perfect</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUE STACK / BENEFIT BANNER -->
+    <section class="py-12 bg-slate-100/50 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 text-brand-600 flex items-center justify-center shrink-0">
+              <!-- Cards Icon -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">10,000+ Banks Linked</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Instant sync with Chase, Amex, Wells Fargo, and major regional credit institutions.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-accent-100 dark:bg-accent-900/30 text-accent-600 flex items-center justify-center shrink-0">
+              <!-- Sync Icon -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">No-Lag Realtime Updates</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">A latte swiped is a category updated. Track your balances exact-to-the-penny instantly.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center shrink-0">
+              <!-- Shield Icon -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Bank-Grade Privacy</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">We utilize read-only tokens through Plaid. Your data is encrypted and never sold.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BENTO GRID SHOWCASE -->
+    <section class="py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <p class="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Master Your Money</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            An entire financial command center in the palm of your hand.
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">
+            Discover a beautiful grid of features specifically built to save you time and eliminate budget dread.
+          </p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- 1. Large Card: AI Auto-Classification Engine -->
+          <div class="md:col-span-2 rounded-3xl bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-8 md:p-10 flex flex-col justify-between overflow-hidden relative shadow-lg group hover:scale-[1.01] transition-all">
+            <div class="absolute right-0 bottom-0 top-0 w-full md:w-1/2 opacity-20 md:opacity-100 pointer-events-none">
+              <!-- Visual Mockup of Transactions mapping dynamically -->
+              <div class="absolute inset-y-0 right-4 flex flex-col justify-center space-y-4 max-w-sm">
+                <!-- Sync animation effect -->
+                <div class="bg-slate-950/80 p-3 rounded-2xl border border-slate-800 flex items-center gap-3">
+                  <div class="h-8 w-8 rounded bg-brand-500 flex items-center justify-center font-bold">🍔</div>
+                  <div>
+                    <p class="text-xs font-semibold">McDonalds $12.40</p>
+                    <p class="text-[9px] text-accent-400">Classified as 'Dining'</p>
+                  </div>
+                </div>
+                <div class="bg-slate-950/80 p-3 rounded-2xl border border-slate-800 flex items-center gap-3 translate-x-4">
+                  <div class="h-8 w-8 rounded bg-purple-500 flex items-center justify-center font-bold">⛽</div>
+                  <div>
+                    <p class="text-xs font-semibold">Shell Fuel $45.00</p>
+                    <p class="text-[9px] text-accent-400">Classified as 'Transport'</p>
+                  </div>
+                </div>
+                <div class="bg-slate-950/80 p-3 rounded-2xl border border-slate-800 flex items-center gap-3">
+                  <div class="h-8 w-8 rounded bg-emerald-500 flex items-center justify-center font-bold">🍿</div>
+                  <div>
+                    <p class="text-xs font-semibold">Netflix Premium $15.49</p>
+                    <p class="text-[9px] text-accent-400">Classified as 'Subscriptions'</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 max-w-md relative z-10">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold backdrop-blur-md">
+                ⭐ Core Upgrade Feature
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold leading-tight">AI Auto-Classification</h3>
+              <p class="text-sm text-indigo-200 font-medium">
+                Our secure machine learning model continuously maps merchant data into clean categories. Spend less time formatting and zero time manually managing expenses.
+              </p>
+            </div>
+
+            <div class="mt-8 md:mt-16 relative z-10">
+              <a href="pricing.html" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-accent-400 hover:text-accent-300 transition-colors">
+                Explore the Tech Upgrade →
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Small Card: Custom Budget Buckets -->
+          <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div class="space-y-4">
+              <div class="h-12 w-12 rounded-2xl bg-accent-100 dark:bg-accent-950/40 text-accent-600 dark:text-accent-400 flex items-center justify-center">
+                <!-- Bucket Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+              </div>
+              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Smart Envelopes</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Segment your finances like digital cash envelopes. Create a dynamic bucket for dining, gas, rent, or a luxury vacation and watch them fill and drain in sync.
+              </p>
+            </div>
+            <div class="mt-8">
+              <a href="pricing.html" class="text-xs font-bold uppercase text-brand-600 dark:text-brand-400 hover:underline">
+                Read about Buckets
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Small Card: Interactive Safe-To-Spend -->
+          <div class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div class="space-y-4">
+              <div class="h-12 w-12 rounded-2xl bg-brand-100 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                <!-- Check Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+              </div>
+              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Realtime Safe To Spend</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Instantly view what money is safely available for discretionary shopping after factoring in planned bill pay obligations, targets, and debt service.
+              </p>
+            </div>
+            <div class="mt-8">
+              <span class="text-xs font-bold uppercase text-slate-400 dark:text-slate-500">
+                Calculated Live
+              </span>
+            </div>
+          </div>
+
+          <!-- 4. Large Card: Premium Visual Analytics -->
+          <div class="md:col-span-2 rounded-3xl bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-8 md:p-10 flex flex-col justify-between overflow-hidden relative shadow-sm hover:shadow-md transition-shadow">
+            <div class="absolute right-0 bottom-0 top-0 w-full md:w-1/2 opacity-20 md:opacity-100 pointer-events-none flex items-center justify-center">
+              <!-- Visual Mock of gorgeous bar graphs / analytics using SVG -->
+              <svg class="w-72 h-44 text-brand-600/20 dark:text-brand-400/10" viewBox="0 0 200 100" fill="currentColor">
+                <rect x="10" y="40" width="20" height="60" rx="3" class="text-brand-200 dark:text-brand-950/60" />
+                <rect x="40" y="20" width="20" height="80" rx="3" class="text-indigo-400/40" />
+                <rect x="70" y="55" width="20" height="45" rx="3" class="text-brand-400/50" />
+                <rect x="100" y="10" width="20" height="90" rx="3" class="text-brand-600" />
+                <rect x="130" y="30" width="20" height="70" rx="3" class="text-accent-400" />
+                <rect x="160" y="45" width="20" height="55" rx="3" class="text-slate-300 dark:text-slate-700" />
+              </svg>
+            </div>
+
+            <div class="space-y-4 max-w-md relative z-10">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 text-xs font-semibold">
+                📈 Intuitive Charts
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Insightful Trend Mapping</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                We synthesize complicated transaction records into easy-to-digest monthly comparisons and visual indicators. Track your net-worth accumulation velocity automatically.
+              </p>
+            </div>
+
+            <div class="mt-8 md:mt-16 relative z-10">
+              <a href="faq.html" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 hover:underline">
+                Frequently Asked Questions →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE SUBPAGES PREVIEW & NAV SUMMARY -->
+    <section class="py-20 bg-slate-100/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Ready to explore further?
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-400">
+            Learn more about how Veloce is built to streamline your financial operations, secure your assets, and answer key questions.
+          </p>
+        </div>
+
+        <!-- 4 Subpage Teaser Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Pricing Card Teaser -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="text-xs font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Plans</span>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1.5 mb-2">Our Pricing</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Unlock limits with premium AI syncer tools and collaborative accounts. Free options available.
+              </p>
+            </div>
+            <a href="pricing.html" class="mt-6 inline-flex items-center text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 transition-colors">
+              Compare plans
+              <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+
+          <!-- FAQ Card Teaser -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="text-xs font-extrabold text-accent-600 dark:text-accent-400 uppercase tracking-wider">Help</span>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1.5 mb-2">Frequently Asked</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Learn how bank connections work, how the AI sorts items, and how secure we are.
+              </p>
+            </div>
+            <a href="faq.html" class="mt-6 inline-flex items-center text-sm font-semibold text-accent-600 dark:text-accent-400 hover:text-accent-700 transition-colors">
+              View FAQs
+              <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+
+          <!-- Support Card Teaser -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Resources</span>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1.5 mb-2">Help Center</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Access step-by-step guides, connect with user-advocacy agents, and troubleshoot bank links.
+              </p>
+            </div>
+            <a href="support.html" class="mt-6 inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 transition-colors">
+              Open support
+              <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+
+          <!-- Contact Card Teaser -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="text-xs font-extrabold text-violet-600 dark:text-violet-400 uppercase tracking-wider">Inquiries</span>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1.5 mb-2">Get in Touch</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Have partnerships or corporate ideas? Reach out to our customer experience or media team.
+              </p>
+            </div>
+            <a href="contact.html" class="mt-6 inline-flex items-center text-sm font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-700 transition-colors">
+              Send a message
+              <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <p class="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Loved Worldwide</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Hear from people who conquered financial stress.
+          </h2>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Testimonial 1 -->
+          <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative flex flex-col justify-between">
+            <div class="space-y-4">
+              <!-- Rating -->
+              <div class="flex text-amber-500 gap-1 text-sm">
+                ★★★★★
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic text-sm font-medium">
+                "I used to spend 2 hours every Sunday copy-pasting numbers from my bank to an Excel sheet. The new AI upgrade on Veloce literally automated 100% of it. Best budgeting application by a landslide."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+              <div class="h-10 w-10 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-600 flex items-center justify-center font-bold text-sm">
+                SD
+              </div>
+              <div>
+                <p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Marketing Lead</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative flex flex-col justify-between">
+            <div class="space-y-4">
+              <!-- Rating -->
+              <div class="flex text-amber-500 gap-1 text-sm">
+                ★★★★★
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic text-sm font-medium">
+                "The Envelope ('Buckets') layout is flawless. Seeing exactly how much safe-to-spend balance I have dynamically keeps my coffee/fast food habits fully checked. Absolute life changer."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+              <div class="h-10 w-10 rounded-full bg-accent-100 dark:bg-accent-900/40 text-accent-600 flex items-center justify-center font-bold text-sm">
+                MK
+              </div>
+              <div>
+                <p class="text-sm font-bold text-slate-900 dark:text-white">Marcus King</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Product Designer</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative flex flex-col justify-between">
+            <div class="space-y-4">
+              <!-- Rating -->
+              <div class="flex text-amber-500 gap-1 text-sm">
+                ★★★★★
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic text-sm font-medium">
+                "Plaid connectivity is rock solid and syncing works instantaneously. Very glad my card transactions auto-sort without manual intervention. The UI/UX is outstanding."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+              <div class="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center font-bold text-sm">
+                HP
+              </div>
+              <div>
+                <p class="text-sm font-bold text-slate-900 dark:text-white">Haley Peterson</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Software Developer</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section class="py-16 md:py-24 bg-gradient-to-tr from-brand-600 to-indigo-900 text-white relative overflow-hidden">
+      <!-- Glow -->
+      <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+          Ready to save over $400 every month automatically?
+        </h2>
+        <p class="text-lg text-indigo-100 max-w-2xl mx-auto font-medium">
+          Get started with free standard sync, or scale up with premium AI automation features. Download now and balance your budgets stress-free.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="pricing.html" class="px-8 py-4 bg-white hover:bg-slate-50 text-brand-600 font-extrabold rounded-xl shadow-lg transition-all text-base">
+            Get Veloce Free Now
+          </a>
+          <a href="contact.html" class="px-8 py-4 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold rounded-xl transition-all text-base">
+            Contact Sales Support
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  
+
+  <!-- INTERACTION SCRIPTS -->
+  <script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlElement = document.documentElement;
+
+    function applyTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    themeToggleBtnMobile.addEventListener('click', toggleTheme);
+    applyTheme();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu if clicked outside of container
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Set Current Year in Footer dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+
+
+<footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 border-t border-slate-800/80 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12">
+        
+        <!-- Branding column -->
+        <div class="col-span-2 space-y-4">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+              V
+            </div>
+            <span class="text-lg font-bold tracking-tight text-white">
+              Veloce<span class="text-accent-500 font-extrabold">.</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed text-slate-400">
+            Next-generation financial orchestration. Fully automated AI bucket systems designed to put your spending tracking on autopilot.
+          </p>
+          <p class="text-xs text-slate-500">
+            © <span id="current-year"></span> Veloce Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Links column 1: App Pages -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Options</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 2: Resources -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="faq.html" class="hover:text-white transition-colors">Faq Desk</a></li>
+            <li><a href="support.html" class="hover:text-white transition-colors">Support Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 3: Company -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 4: Legal -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Legal Stuff</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bank Sync Disclosure -->
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center md:text-left">
+        <p class="text-xs text-slate-600 dark:text-slate-500 leading-relaxed max-w-4xl">
+          Bank sync services provided by Plaid. Veloce AI is not a bank. Banking assets are stored and secured under bank-level encryption (AES-256) standards. Your financial tracking data is read-only.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+<script>
+(function() {
+  function initNavControls() {
+    const btn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('mobile-menu') || document.querySelector('[data-menu-content]');
+    if (btn && menu) {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      };
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
+      });
+    }
+    const themeBtn = document.getElementById('theme-toggle-btn') || document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('xsites_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch(err){}
+      };
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavControls);
+  } else {
+    initNavControls();
+  }
+})();
+</script>
+</body>
+</html>
