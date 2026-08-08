@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Veloce AI — Smart Financial Mobile Budgeting App</title>
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .accent-gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          V
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-slate-900 dark:from-white dark:via-brand-400 dark:to-white bg-clip-text text-transparent">
+          Veloce<span class="text-accent-500 font-extrabold">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-brand-600 dark:text-brand-400 transition-colors">Home</a>
+        <a href="pricing.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="faq.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        <a href="support.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Support</a>
+        <a href="contact.html" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Nav controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- Moon Icon -->
+          <svg id="theme-toggle-moon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <!-- Sun Icon -->
+          <svg id="theme-toggle-sun" class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <a href="pricing.html" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10 hover:shadow-brand-600/20">
+          Get Veloce Free
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle and Theme Toggle for Mobile -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <!-- Theme Toggle (Mobile) -->
+        <button id="theme-toggle-btn-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-label="Toggle Dark Mode">
+          <!-- We can reuse or trigger click on main button or just let JS target both -->
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- GLOBAL HEADER NAVIGATION -->
+  
+
+  <!-- Mobile Menu Drawer (Hidden by default) -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-900 px-4 pt-2 pb-6 space-y-3 transition-all duration-300">
+    <a href="index.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Home</a>
+    <a href="pricing.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Pricing</a>
+    <a href="faq.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">FAQ</a>
+    <a href="support.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900">Support</a>
+    <a href="contact.html" class="block px-3 py-2 rounded-lg text-base font-medium text-brand-600 dark:text-brand-400 bg-brand-50/50 dark:bg-brand-950/20">Contact</a>
+    <div class="pt-4 border-t border-slate-100 dark:border-slate-900">
+      <a href="pricing.html" class="block w-full text-center px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all">
+        Get Veloce Free
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow">
+    
+    <!-- Hero / Title Section -->
+    <section class="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-brand-50/50 via-transparent to-transparent dark:from-brand-950/10 dark:via-transparent dark:to-transparent">
+      <!-- Background elements -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none opacity-40 dark:opacity-20">
+        <div class="absolute top-12 left-10 w-72 h-72 rounded-full bg-brand-500/20 blur-3xl"></div>
+        <div class="absolute top-24 right-10 w-96 h-96 rounded-full bg-accent-500/20 blur-3xl"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-100/60 dark:bg-brand-950/40 rounded-full inline-block mb-4">
+          Connect With Us
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-3xl mx-auto">
+          We’re here to help you <span class="accent-gradient-text">master your money</span>.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Have questions about AI transaction tracking, customized budget buckets, or security? Choose a channel below or send a message directly to our financial operations team.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Contact & Interactive Form Section -->
+    <section class="pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Column 1: Info, Security Confidence & Real-Time Stats (45% space) -->
+          <div class="lg:col-span-5 space-y-10">
+            
+            <!-- Dynamic SLA Widget -->
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
+              <div class="flex items-center space-x-4">
+                <div class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-500"></span>
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Live System Status</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">AI Bank Syncing is active and operational.</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-slate-800/80">
+                <div>
+                  <span class="text-xs text-slate-400 block">Average Response</span>
+                  <span class="text-xl font-bold text-slate-900 dark:text-white">4.8 minutes</span>
+                </div>
+                <div>
+                  <span class="text-xs text-slate-400 block">Customer Satisfaction</span>
+                  <span class="text-xl font-bold text-slate-900 dark:text-white">99.2%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Direct Channels Info -->
+            <div class="space-y-6">
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Direct Contact Channels</h2>
+              
+              <div class="space-y-4">
+                <!-- Card 1: Support -->
+                <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-900/40 transition-colors">
+                  <div class="p-3 bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-semibold text-slate-900 dark:text-white">General Customer Support</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Get immediate help setting up bank integration or managing custom buckets.</p>
+                    <a href="mailto:support@veloce-app.com" class="text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline mt-2 inline-block">support@veloce-app.com</a>
+                  </div>
+                </div>
+
+                <!-- Card 2: Partnerships / Enterprise -->
+                <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-900/40 transition-colors">
+                  <div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-semibold text-slate-900 dark:text-white">Partnerships &amp; Media</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">For corporate bank integration, financial tech alliances, or press inquiries.</p>
+                    <a href="mailto:partners@veloce-app.com" class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline mt-2 inline-block">partners@veloce-app.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Assurance Block (Crucial for FinTech conversions) -->
+            <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-900 space-y-4">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center">
+                <svg class="w-5 h-5 text-accent-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.166 4.9C2.644 3.8 3.655 3 4.8 3h10.4c1.145 0 2.156.8 2.634 1.9L20 10.7V17c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2v-6.3l2.166-5.8zM4 11v4h12v-4H4zm1.5-6h9l-.75 2h-7.5L5.5 5z" clip-rule="evenodd"></path>
+                </svg>
+                Bank-Grade Protection Standards
+              </h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                We handle security with extreme caution. Veloce AI utilizes 256-bit AES encryption with safe read-only bank data streams via Plaid. We never see or store your direct bank logins.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Conversational Interactive Form (75% space) -->
+          <div class="lg:col-span-7">
+            <div class="relative group">
+              <!-- Glow backdrop effect -->
+              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-brand-600 to-accent-500 opacity-20 blur-xl group-hover:opacity-30 transition-all duration-300"></div>
+              
+              <div class="relative bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 rounded-2xl shadow-xl">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Send an Instant Message</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">Our AI auto-routes your inquiry to the perfect human expert instantly.</p>
+
+                <!-- Feedback States -->
+                <div id="contact-success" class="hidden p-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 rounded-xl space-y-3 mb-8">
+                  <div class="flex items-center space-x-3">
+                    <svg class="w-6 h-6 text-accent-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p class="font-semibold text-base">Message transmitted successfully!</p>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">
+                    Your transmission has been logged. An automated ticket reference has been dispatched to your inbox. Expect a response in under 5 minutes.
+                  </p>
+                </div>
+
+                <form id="contact-form" class="space-y-6">
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label for="first_name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">First Name</label>
+                      <input type="text" id="first_name" required placeholder="Alexander" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all text-sm">
+                    </div>
+                    <div>
+                      <label for="last_name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Last Name</label>
+                      <input type="text" id="last_name" required placeholder="Hamilton" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all text-sm">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Email Address</label>
+                    <input type="email" id="email" required placeholder="alexander@domain.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all text-sm">
+                  </div>
+
+                  <div>
+                    <label for="topic" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Topic of Inquiry</label>
+                    <div class="relative">
+                      <select id="topic" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all text-sm appearance-none cursor-pointer">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="account">General Account Setup &amp; Onboarding</option>
+                        <option value="ai-sync">AI Automated Bank / Card Sync Issue</option>
+                        <option value="buckets">Custom Budget Buckets Setup</option>
+                        <option value="billing">Premium Plan &amp; Billing Queries</option>
+                        <option value="security">Security, Data Rights &amp; Plaid Integration</option>
+                        <option value="partnerships">Business &amp; Tech Partnership Opportunities</option>
+                      </select>
+                      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Detailed Message</label>
+                    <textarea id="message" required rows="4" placeholder="How can our financial operations team assist you today?" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all text-sm"></textarea>
+                  </div>
+
+                  <!-- Explicit Privacy Consent Checklist -->
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="consent" name="consent" required type="checkbox" class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 dark:bg-slate-950 dark:border-slate-800">
+                    </div>
+                    <div class="ml-3 text-xs">
+                      <label for="consent" class="text-slate-600 dark:text-slate-400">
+                        I acknowledge that Veloce processes my contact credentials in adherence with the designated <a href="privacy.html" class="underline hover:text-brand-600">Privacy Policy</a>.
+                      </label>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="w-full py-4 px-6 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center space-x-2">
+                    <span>Send Secure Message</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Help Center Quick Redirect Section -->
+    <section class="py-16 border-t border-slate-200 dark:border-slate-900 bg-slate-100/50 dark:bg-slate-950/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Prefer to resolve it immediately?</h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2 max-w-xl mx-auto">Skip the queue. Over 85% of standard questions regarding bucket systems and automatic card tracking can be found instantly.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="faq.html" class="px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-semibold transition-all">
+            Browse the FAQ Desk
+          </a>
+          <a href="support.html" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md shadow-brand-600/10">
+            Open Support Desk
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Operations Section -->
+    <section class="py-20 border-t border-slate-200 dark:border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Our Main Hubs</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2">Veloce Technologies maintains operations across the globe to assure seamless tracking stability.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Hub 1: SF -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80">
+            <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/40 px-3 py-1 rounded-full">HQ / West Coast</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-4">San Francisco</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">548 Market St, Suite 4829<br>San Francisco, CA 94104</p>
+            <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400 block mt-4 flex items-center">
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block mr-1.5"></span>
+              9:00 AM — 6:00 PM PST
+            </span>
+          </div>
+
+          <!-- Hub 2: NY -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80">
+            <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/40 px-3 py-1 rounded-full">East Coast</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-4">New York</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">120 Broadway, 11th Floor<br>New York, NY 10271</p>
+            <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400 block mt-4 flex items-center">
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block mr-1.5"></span>
+              9:00 AM — 6:00 PM EST
+            </span>
+          </div>
+
+          <!-- Hub 3: London -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80">
+            <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/40 px-3 py-1 rounded-full">European Operations</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-4">London</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">85 Great Portland St, First Floor<br>London, W1W 7LT, UK</p>
+            <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400 block mt-4 flex items-center">
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block mr-1.5"></span>
+              8:00 AM — 5:00 PM GMT
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  
+
+  <!-- DYNAMIC JS UTILITIES (Theme Toggle, Navigation, Dynamic Interactive Form Processing) -->
+  <script>
+    // 1. Dynamic Year Utility
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 2. Dark Mode Logic
+    const toggleButtons = [
+      document.getElementById('theme-toggle-btn'),
+      document.getElementById('theme-toggle-btn-mobile')
+    ];
+
+    // Read stored or system theme preferences
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Toggle theme on clicks
+    toggleButtons.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+        });
+      }
+    });
+
+    // 3. Mobile Navigation Drawer Expand Utility
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // 4. Contact Form Interactive Submit Simulation
+    const contactForm = document.getElementById('contact-form');
+    const contactSuccess = document.getElementById('contact-success');
+
+    if (contactForm && contactSuccess) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Hide form fields or disable them
+        const inputs = contactForm.querySelectorAll('input, select, textarea, button');
+        inputs.forEach(input => {
+          input.disabled = true;
+          input.classList.add('opacity-50');
+        });
+
+        // Display Success Card elegantly
+        contactSuccess.classList.remove('hidden');
+        contactSuccess.classList.add('animate-fade-in');
+
+        // Scroll view smoothly up to success banner
+        contactSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  </script>
+
+
+<footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 border-t border-slate-800/80 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Grid layout -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-12">
+        
+        <!-- Branding column -->
+        <div class="col-span-2 space-y-4">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+              V
+            </div>
+            <span class="text-lg font-bold tracking-tight text-white">
+              Veloce<span class="text-accent-500 font-extrabold">.</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed text-slate-400">
+            Next-generation financial orchestration. Fully automated AI bucket systems designed to put your spending tracking on autopilot.
+          </p>
+          <p class="text-xs text-slate-500">
+            © <span id="current-year"></span> Veloce Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Links column 1: App Pages -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Options</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 2: Resources -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="faq.html" class="hover:text-white transition-colors">Faq Desk</a></li>
+            <li><a href="support.html" class="hover:text-white transition-colors">Support Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 3: Company -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Links column 4: Legal -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Legal Stuff</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bank Sync Disclosure -->
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center md:text-left">
+        <p class="text-xs text-slate-600 dark:text-slate-500 leading-relaxed max-w-4xl">
+          Bank sync services provided by Plaid. Veloce AI is not a bank. Banking assets are stored and secured under bank-level encryption (AES-256) standards. Your financial tracking data is read-only.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+<script>
+(function() {
+  function initNavControls() {
+    const btn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-menu-toggle]');
+    const menu = document.getElementById('mobile-menu') || document.querySelector('[data-menu-content]');
+    if (btn && menu) {
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      };
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
+      });
+    }
+    const themeBtn = document.getElementById('theme-toggle-btn') || document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      themeBtn.onclick = function(e) {
+        e.stopPropagation();
+        document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('xsites_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch(err){}
+      };
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavControls);
+  } else {
+    initNavControls();
+  }
+})();
+</script>
+<script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+    const htmlElement = document.documentElement;
+
+    function applyTheme() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    }
+
+    function toggleTheme() {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    themeToggleBtnMobile.addEventListener('click', toggleTheme);
+    applyTheme();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu if clicked outside of container
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Set Current Year in Footer dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
